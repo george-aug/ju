@@ -1,0 +1,36 @@
+Disable autofill on Registration or Signup page
+-----------------------------------------------
+Very Important: this is user annoying feature which has to be disabled:
+https://stackoverflow.com/questions/10938891/
+disable-form-autofill-in-chrome-without-disabling-autocomplete/36538894
+Link: just above provide the better explanation
+
+Last Page(url) Visited Session
+------------------------------
+
+
+
+External and Internal Links
+---------------------------
+Twitter,Facebook,Video (Youtube),Blog,Discus
+Matrimony,Problems,Parties,Survey
+
+
+Un-setting Session Variable on closing Alert
+--------------------------------------------
+On closing alert ajax call is made to unset-session.php file.
+It unset's 2 session variables $_SESSION['type'] and $_SESSION['msg']
+It is important to unset these variable so that alerts does not reappears.
+
+
+Closing of Bootstrap Alerts
+---------------------------
+Alerts can be closed in 2 ways:
+1) data-dismiss="alert" attribute
+2) through javascript: calling onclick function
+containing following line of code: $('.alert').alert('close');
+See partial: alert.blade.php: commented and non-commented both
+
+
+
+
