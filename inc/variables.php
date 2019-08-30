@@ -27,11 +27,17 @@ $incomes_arr = getSeedingVars('incomes',$mysqli);
 $maritals_arr = getSeedingVars('maritals',$mysqli);
 $mangliks_arr = getSeedingVars('mangliks',$mysqli);
 $educations_arr = getSeedingVars('educations',$mysqli);
+$degrees_arr = getSeedingVars('degrees',$mysqli);
+$sectors_arr = getSeedingVars('sectors',$mysqli);
+$universities_arr = getSeedingVars('universities',$mysqli);
 $occupations_arr = getSeedingVars('occupations',$mysqli);
 $diets_arr = getSeedingVars('diets',$mysqli);
 $smokes_arr = getSeedingVars('smokes',$mysqli);
 $drinks_arr = getSeedingVars('drinks', $mysqli);
 $challenges_arr = getSeedingVars('challenged',$mysqli);
+
+$fathers_arr = getSeedingVars('fathers',$mysqli);
+$mothers_arr = getSeedingVars('mothers',$mysqli);
 
 
 
@@ -55,17 +61,48 @@ $maritals = getVariables('maritals',$mysqli);
 $mangliks = getVariables('mangliks',$mysqli);
 $educations = getVariables('educations',$mysqli);
 $occupations = getVariables('occupations',$mysqli);
+$degrees = getVariables('degrees',$mysqli);
+$sectors = getVariables('sectors',$mysqli);
+$universities = getVariables('universities',$mysqli);
 $diets = getVariables('diets',$mysqli);
 $smokes = getVariables('smokes',$mysqli);
 $drinks = getVariables('drinks', $mysqli);
 $challenges = getVariables('challenged',$mysqli);
 
+$fathers = getVariables('fathers',$mysqli);
+$mothers = getVariables('mothers',$mysqli);
+$famAffluence = getVariables('fam_affluence',$mysqli);
+$famValues = getVariables('fam_values',$mysqli);
+$famTypes = getVariables('fam_types',$mysqli);
+$famIncomes = getVariables('fam_incomes',$mysqli);
+$complexions = getVariables('complexions',$mysqli);
+$bodies = getVariables('bodies',$mysqli);
+$bGroups = getVariables('blood_groups',$mysqli);
+$thalassemia = getVariables('thalassemia',$mysqli);
+$citizenship = getVariables('citizenship',$mysqli);
+$hobbies = getVariables('hobbies',$mysqli);
+$interests = getVariables('interests',$mysqli);
+$states = getVariables('states',$mysqli);
+$cities = getVariables('cities',$mysqli);
+
+$fors = getVariables('fors',$mysqli);
 //var_dump($languages);
 
+/*Age Variable*/
 $age_rows = array();
 for($i=18;$i<=72;$i++){
     $age_rows[]=$i;
 }
 
-$triple=[0,1,2]; // Unknown:Yes:No
+/*Weight Variable*/
+$wts = array();
+for($i=40;$i<=90;$i++){
+    $wts[]=$i;
+}
+
+/*
+ * Used for HIV and RSA etc
+ * Stands for Unknown:Yes:No
+ * */
+$triple=[0,1,2];
 

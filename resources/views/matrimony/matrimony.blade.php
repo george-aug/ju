@@ -1,39 +1,1 @@
-@extends('layouts.app')
-
-@section('title', 'Page Title')
-
-{{--@section('sidebar')
-    @parent
-
-    <p>This is appended to the master sidebar.</p>
-@endsection--}}
-
-@section('content')
-
-    <div class="row justify-content-center mb-5">
-        <h2 class="text-muted">JU Matrimony</h2>
-    </div>
-    <div class="row justify-content-center">
-        @if($num>0)
-            @foreach($profiles as $profile)
-                <a href="#" class="btn btn-outline-dark ml-2 mr-2 ajaxCP" data-id="{{$profile->id}}" data-no="{{$profile->pno}}" data-gen="{{$profile->gender}}">{{$profile->pno}}</a>
-
-                {{--<form action="chg-profile.php" method="post" class="form-inline my-2 my-lg-0 ml-2 mr-2">
-                    <input type="hidden" name="pid" value="{{$profile->id}}">
-                    <input type="hidden" name="pno" value="{{$profile->pno}}">
-                    <button class="btn btn-outline-dark my-2 my-sm-0" name="matri-submit" type="submit">{{$profile->pno}}</button>
-                </form>--}}
-            @endforeach
-        @else
-            <div class="alert alert-warning" role="alert">
-                <h4 class="alert-heading">Welcome to JU Matrimony!</h4>
-                <p>Searching life partner (jeevansathi) for Indians especially Hindus is like a celebration, while
-                    finding a perfect match for your son, daughter, brother, sister, friend and relative can be
-                    challenging and difficult also. Combining these celebration and challenges, is where comes JU Matrimony.
-                The JU Matrimony is completely free so that you can pick a your soulmate from among thousand of profiles</p>
-                <hr>
-                <p class="mb-0">JU Matrimony! a free matrimonial service started by Just Unite Foundation</p>
-            </div>
-        @endif
-    </div>
-@endsection
+@extends('layouts.app')@section('title', 'Page Title'){{--@section('sidebar')    @parent    <p>This is appended to the master sidebar.</p>@endsection--}}@section('content')    <div class="row justify-content-center mb-5">        <h2 class="text-muted">JU Matrimony</h2>    </div>    <div>        @if($num>0)            <div class="row">            @foreach($profiles as $profile){{--                <a href="#" class="btn btn-outline-dark ml-2 mr-2 ajaxCP" data-id="{{$profile->id}}" data-no="{{$profile->pno}}" data-gen="{{$profile->gender}}">{{$profile->pno}}</a>--}}                {{--<form action="chg-profile.php" method="post" class="form-inline my-2 my-lg-0 ml-2 mr-2">                    <input type="hidden" name="pid" value="{{$profile->id}}">                    <input type="hidden" name="pno" value="{{$profile->pno}}">                    <button class="btn btn-outline-dark my-2 my-sm-0" name="matri-submit" type="submit">{{$profile->pno}}</button>                </form>--}}            <div class="col-sm-6">                <div class="card">                    <div class="card-body">                        <h5 class="card-title">{{$profile->first_name.' '.$profile->last_name}}</h5>                        <h6 class="card-subtitle mb-2 text-muted">{{$profile->cfor.'\'s Profile'}}</h6>                        <p class="card-text">                            {{'Age: '.\Carbon\Carbon::parse($profile->dob)->age}}{{' | '}}                            {{'Created on: '.\Carbon\Carbon::parse($profile->created_at)->toFormattedDateString()}}                        </p>                        <a href="{{'dashboard.php'}}" class="btn btn-primary">{{$profile->pno}}</a>                        <div class="mt-3">                            <a href="{{'my-profile.php'}}" class="card-link">Profile</a>                            <a href="{{'album.php'}}" class="card-link">Album</a>                            <a href="{{'referral-program.php'}}" class="card-link">Referral</a>                        </div>                    </div>                </div>            </div>            @endforeach            </div>        @else            <div class="alert alert-warning" role="alert">                <h4 class="alert-heading">Welcome to JU Matrimony!</h4>                <p>Searching life partner (jeevansathi) for Indians especially Hindus is like a celebration, while                    finding a perfect match for your son, daughter, brother, sister, friend and relative can be                    challenging and difficult also. Combining these celebration and challenges, is where comes JU Matrimony.                The JU Matrimony is completely free so that you can pick a your soulmate from among thousand of profiles</p>                <hr>                <p class="mb-0">JU Matrimony! a free matrimonial service started by Just Unite Foundation</p>            </div>        @endif    </div>    <br><hr>    @if((3-$num)>=0)        <div>            <p><b>You can create {{3-$num}} more profiles</b></p>        </div>    @endif    <br><hr>    <div class="mt-3 mb-5">        <h4>Referral Program            <small class="font-italic text-success">earn money</small>        </h4>        @if($user->refid==null)            <button type="button" class="btn btn-outline-warning" id="joinRef" value="{{$_SESSION['id']}}">Join Referral Program</button>        @else            <div class="alert alert-primary" role="alert">                {{'/justunite/matrimony.php?ref='.$user->refid}}<a href="#" class="alert-link float-right">copy link</a>            </div>        @endif    </div>    <br><br>@endsection@section('script')    <script>        $(document).ready(function () {            $('#joinRef').on('click', function () {                var userId = $(this).val();                $.ajax({                    url: "w-ajax/join-referral.php",                    method: 'post',                    data: {                        userId: userId                    },                    dataType: "text",                    success: function (data, status) {                        console.log(data);                        console.log(status);                        // Hide image container                        /*setTimeout(function () {                            $('#loader' + data).hide();                            $('#btn' + data).attr('hidden', false).attr('disabled', true).attr('value', 'Sent');                        }, 1000);*/                        //$('#loader'+data).hide();                        //$('#btn'+data).attr('hidden',false);                        //$('#btn'+data).attr('hidden',false).attr('disabled',true);                    }                });            });        });    </script>@endsection

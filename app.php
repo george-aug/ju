@@ -20,3 +20,4 @@ include 'inc/session.php';
 include 'inc/profiles.php';
 include 'inc/variables.php';
 
+//var_dump($_SESSION);

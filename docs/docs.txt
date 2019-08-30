@@ -1,36 +1,92 @@
+=======================
+List of Files & Folders
+=======================
+Account
+-------
+login.php       auth/login.blade.php
+signup.php      auth/signup.blade.php
+join.php
+pass.php
+change.php      auth/password/change.php
+forgot.php
+reset.php
+
+Matrimony
+---------
+album.php
+matrimony.php
+dashboard.php
+my-profile.php
+referral.php
+
+
+
+
+
+=====================================================
+Tested Tags Input for bootstrap multi-select dropdown
+=====================================================
+It only works with the value in place of id.
+Not display so well on mobile
+Conclusion try different multi-select approach
+
+==============
+Session Record
+==============
+
+
+
+
+
+
+
+================
+Referral Program
+================
+Candidates referring to others will get 50 rupees when the referred candidates become a verified member
+Unique referral url is generated for this purpose which can be shared easily on wa, fb and tw
+Referral url is visible on ju-matrimony page i.e. first page of matrimony section
+Referral url will contain unique encrypted referral id which is passed through get method
+When ever the new candidate registers through referral url counter increases of referring member
+
+===============================================
 Disable autofill on Registration or Signup page
------------------------------------------------
+===============================================
 Very Important: this is user annoying feature which has to be disabled:
 https://stackoverflow.com/questions/10938891/
 disable-form-autofill-in-chrome-without-disabling-autocomplete/36538894
 Link: just above provide the better explanation
 
+
+==============================
 Last Page(url) Visited Session
-------------------------------
+==============================
+Redirected back to the same page from where guest
+user is asked to logged in before continuing further.
+https://stackoverflow.com/questions/6768793/get-the-full-url-in-php
+https://www.youtube.com/watch?v=rMJgUQLikOE
 
 
-
+===========================
 External and Internal Links
----------------------------
+===========================
 Twitter,Facebook,Video (Youtube),Blog,Discus
 Matrimony,Problems,Parties,Survey
 
 
+============================================
 Un-setting Session Variable on closing Alert
---------------------------------------------
+============================================
 On closing alert ajax call is made to unset-session.php file.
 It unset's 2 session variables $_SESSION['type'] and $_SESSION['msg']
 It is important to unset these variable so that alerts does not reappears.
 
 
+===========================
 Closing of Bootstrap Alerts
----------------------------
+===========================
 Alerts can be closed in 2 ways:
 1) data-dismiss="alert" attribute
 2) through javascript: calling onclick function
 containing following line of code: $('.alert').alert('close');
 See partial: alert.blade.php: commented and non-commented both
-
-
-
-

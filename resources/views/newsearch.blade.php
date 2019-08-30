@@ -427,7 +427,7 @@
             @foreach($profiles as $profile)
                 <tr>
                     <td>{{$profile->id}}</td>
-                    <td><a href="profile.php?id={{$profile->profile_id}}">{{$profile->profile_id}}</a></td>
+                    <td><a href="profile.php?id={{$profile->profile_no}}">{{$profile->profile_no}}</a></td>
                     <td>@if($profile->photo==1)
                             <a href=""><img src="{{'public/images/blue-128.png'}}" alt="" width="45px" height="45px"></a>
                         @else

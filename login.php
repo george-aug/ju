@@ -69,7 +69,10 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['logged-in'] = true;
 
-                    header("Location: index.php");
+                    //header("Location: index.php");
+                    (isset($_SESSION['redirectURL'])
+                        ?header("Location:".$_SESSION['redirectURL'])
+                        :header("Location: index.php"));
                     flash('success','Welcome back! Logged-In Successfully Aloo');
                     exit();
                 }

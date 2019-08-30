@@ -1,0 +1,5 @@
+===========================
+Similar fields in sql table
+===========================
+During joining of the tables it is common that both the tables have similar columns like created_at
+so properly prepend the table name with column name other wise sql will through an error
