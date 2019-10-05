@@ -13,6 +13,11 @@ use Carbon\Carbon;
 use Jenssegers\Blade\Blade;
 $blade = new Blade('resources/views', 'resources/cache');
 
+// import the Intervention Image Manager Class
+use Intervention\Image\ImageManager;
+// create an image manager instance with favored driver
+$manager = new ImageManager();
+
 include 'inc/database.php';
 include 'inc/functions.php';
 include 'inc/messages.php';

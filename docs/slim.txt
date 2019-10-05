@@ -1,0 +1,42 @@
+Implementing Slim Image Cropper
+===============================
+
+Challenges
+----------
+Restricting users to upload only 3 images
+Disabling edit button on server images
+Naming of images uploaded
+Saving it onto server
+Persisting it into database
+Deleting the uploaded images from DB as well as from server
+
+Problems
+---------
+If you take meta data while using slim that is: data-meta-pic-id. The problem is when user delete the first
+image second image shifts to position one
+
+
+Notes:
+------
+Data Ratio is: width:height
+
+How Deletion of Image works for Users
+-------------------------------------
+1. Deletion of server image by user
+2. Deletion of image when user upload & edit same image during single session
+Since the uid is attached to the image name every image name is unique
+
+
+Checking Steps
+--------------
+# Current Image: dragNDrop/edit/upload/delete
+dragNDrop: Working!                             Drag n drop to the page working
+Edit: Working!                                  Crop,Rotate working
+Upload: Working!                                Upload to server working
+Delete: Working!
+Re-edit same Image:
+
+
+# Old Server Image: edit/delete/re-upload
+Edit: Disabled
+Delete: soft delete working

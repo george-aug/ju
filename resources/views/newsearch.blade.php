@@ -79,8 +79,8 @@
                      <select multiple id="srch_language" name="lan[]" class="form-control">
                          <option selected value=''>Select language</option>
                          @foreach($languages as $language)
-                             <option value="{{$language->id}}" {{ (in_array($language->id,$lan)) ?'selected':null }}>
-                                 {{$language->name}}
+                             <option value="{{$language->value}}" {{ (in_array($language->value,$lan)) ?'selected':null }}>
+                                 {{$language->text}}
                              </option>
                          @endforeach
                      </select>
@@ -427,7 +427,7 @@
             @foreach($profiles as $profile)
                 <tr>
                     <td>{{$profile->id}}</td>
-                    <td><a href="profile.php?id={{$profile->profile_no}}">{{$profile->profile_no}}</a></td>
+                    <td><a href="profile.php?id={{$profile->pno}}">{{$profile->pno}}</a></td>
                     <td>@if($profile->photo==1)
                             <a href=""><img src="{{'public/images/blue-128.png'}}" alt="" width="45px" height="45px"></a>
                         @else

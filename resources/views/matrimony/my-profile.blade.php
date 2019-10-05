@@ -12,83 +12,25 @@
     <link rel="stylesheet" href="https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
     <link rel="stylesheet" href="https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/assets/app.css">
     <style>
-        .container{
+        /*.container{
             margin: 20px;
-        }
-
-        /* autocomplete tagsinput*/
-        .label-info {
-            background-color: #5bc0de;
-            display: inline-block;
-            padding: 0.2em 0.6em 0.3em;
-            font-size: 75%;
-            font-weight: 700;
-            line-height: 1;
-            color: #fff;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25em;
-        }
-        .label-success {
-            background-color: #28A745;
-            display: inline-block;
-            padding: 0.2em 0.6em 0.3em;
-            font-size: 75%;
-            font-weight: 700;
-            line-height: 1;
-            color: #fff;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25em;
-        }
-        .label-danger {
-            background-color: #DC3545;
-            display: inline-block;
-            padding: 0.2em 0.6em 0.3em;
-            font-size: 75%;
-            font-weight: 700;
-            line-height: 1;
-            color: #fff;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25em;
-        }
-        .label-warning {
-            background-color: #FFC107;
-            display: inline-block;
-            padding: 0.2em 0.6em 0.3em;
-            font-size: 75%;
-            font-weight: 700;
-            line-height: 1;
-            color: #fff;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25em;
-        }
-        .label-primary {
-            background-color: #007BFF;
-            display: inline-block;
-            padding: 0.2em 0.6em 0.3em;
-            font-size: 75%;
-            font-weight: 700;
-            line-height: 1;
-            color: #fff;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25em;
-        }
-
+        }*/
     </style>
 @endsection
 
 @section('content')
+    @if(!isset($_SESSION['pid']))
+        <div class="row justify-content-center mb-5">
+            <h3 class="text-muted">{{'Sorry! but no matrimonial profile is associated with this account.'}}</h3>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <a role="button" href="{{'matrimony.php'}}" class="btn btn-outline-info my-2 my-sm-0 mr-2">Create Profile</a>
+            <a role="button" href="{{'referral.php'}}" class="btn btn-outline-success my-2 my-sm-0">Earn Money</a>
+        </div>
+    @else
+
     <div class="row justify-content-center mb-5">
-        <h3 class="text-muted">Welcome {{ $profile->first_name.' '."($profile->profile_no)"}}</h3>
+        <h3 class="text-muted">Welcome {{ $profile->first_name.' '}}<a href="{{'profile.php?id='.$profile->pno}}">{{$profile->pno}}</a></h3>
     </div>
 
     <div class="row">
@@ -528,7 +470,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="hobby">Hobbies?</label>
-                            <select multiple id="hobby" class="form-control">
+                            <select multiple id="hobby" class="form-control d-sm-none d-md-block">
                                 <option>Choose...</option>
                                 @foreach($hobbies as $hobby)
                                     <option value="{{$hobby->id}}" {{($profile->hobby_id==$hobby->value)?'Selected':''}}>{{$hobby->text}}</option>
@@ -536,7 +478,7 @@
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="interest">Languages Known?</label>
+                            <label for="interest">Interests?</label>
                             <select multiple id="interest" class="form-control">
                                 <option>Choose...</option>
                                 @foreach($interests as $interest)
@@ -560,19 +502,16 @@
                         <div class="form-group input-group-sm col-md-6">
                             <label for="state">State</label>
                             <select id="state" class="form-control">
-                                <option>Choose...</option>
+                                <option value="">Choose...</option>
                                 @foreach($states as $state)
-                                    <option value="{{$state->id}}" {{($profile->state_id==$state->id)?'Selected':''}}>{{$state->name}}</option>
+                                    <option value="{{$state->id}}" {{($profile->state_id==$state->id)?'Selected':''}}>{{$state->text}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group input-group-sm col-md-6">
-                            <label for="city">Districts/Cities</label>
-                            <select id="city" class="form-control">
-                                <option>Choose...</option>
-                                @foreach($cities as $city)
-                                    <option value="{{$city->id}}" {{($profile->city_id==$city->id)?'Selected':''}}>{{$city->name}}</option>
-                                @endforeach
+                            <label for="district">Districts/Cities</label>
+                            <select id="district" class="form-control">
+                                <option value="">Select state first</option>
                             </select>
                         </div>
                     </div>
@@ -747,73 +686,57 @@
             </div>
             <hr>
 
-
-
-
-
-
-
-
             <br>
             <br>
             <br>
-            {{--<hr>
-            <div>
-                <form>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">Address 2</label>
-                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputState">State</label>
-                            <select id="inputState" class="form-control">
-                                <option selected>Choose...</option>
-                                <option>...</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck">
-                            <label class="form-check-label" for="gridCheck">
-                                Check me out
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                </form>
-            </div>--}}
         </div>
     </div>
+
+    @endif
 @endsection
 
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $('#country').on('change', function(){
+                var countryID = $(this).val();
+                if(countryID){
+                    $.ajax({
+                        type:'POST',
+                        url:'ajaxData.php',
+                        data:'country_id='+countryID,
+                        success:function(html){
+                            $('#state').html(html);
+                            $('#city').html('<option value="">Select state first</option>');
+                        }
+                    });
+                }else{
+                    $('#state').html('<option value="">Select country first</option>');
+                    $('#city').html('<option value="">Select state first</option>');
+                }
+            });
+
+            $('#state').on('change', function(){
+                var stateID = $(this).val();
+                if(stateID){
+                    $.ajax({
+                        type:'POST',
+                        url:'w-ajax/select-district.php',
+                        data:{
+                            state_id:stateID
+                        },
+                        success:function(data,status){
+                            //console.log(data);
+                            //console.log(status);
+                            $('#district').html(data);
+                        }
+                    });
+                }else{
+                    $('#district').html('<option value="">Select state first</option>');
+                }
+            });
+        });
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script src="https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>

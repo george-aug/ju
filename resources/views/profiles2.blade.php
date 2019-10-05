@@ -31,7 +31,7 @@
             @foreach($profiles as $profile)
                 <tr class="m-0">
                     <td class="w-5">{{$profile->id}}</td>
-                    <td class="w-20"><a href="profile.php?id={{$profile->profile_no}}">{{$profile->profile_no}}</a></td>
+                    <td class="w-20"><a href="profile.php?id={{$profile->pno}}">{{$profile->pno}}</a></td>
 
                     <td class="w-10">{!!($profile->photo==1)?'<a href="#"><i class="material-icons md-dark">photo_library</i></a>':
                     '<i class="material-icons md-dark md-inactive">photo_camera</i>'!!}</td>

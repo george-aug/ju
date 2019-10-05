@@ -10,7 +10,8 @@ require_once 'app.php';
 
 $sql = "SELECT
     profiles.id,
-    profiles.profile_id,
+    profiles.pno,
+    profiles.user_id,
     profiles.photo,
     profiles.first_name,
     profiles.last_name,
@@ -19,7 +20,7 @@ $sql = "SELECT
     
     heights.feet as ht, 
     religions.name as religen,
-    languages.name as lang,
+    languages.text as lang,
     countries.name as country,
     incomes.level as income,
     maritals.status as mstatus,
@@ -40,7 +41,7 @@ $sql = "SELECT
     
     JOIN heights ON heights.id = profiles.height_id
     JOIN religions ON religions.id = profiles.religion_id
-    JOIN languages ON languages.id = profiles.language_id
+    JOIN languages ON languages.value = profiles.language_id
     JOIN countries ON countries.id = profiles.country_id
     JOIN incomes ON incomes.id = profiles.income_id
     JOIN maritals ON maritals.id = profiles.marital_id

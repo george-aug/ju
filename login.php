@@ -1,19 +1,7 @@
 <?php
 
-/*include_once 'inc/session.php';
-include_once 'inc/messages.php';
-include_once 'inc/database.php';
-include_once 'vendor/autoload.php';
-use Jenssegers\Blade\Blade;
-$blade = new Blade('resources/views', 'resources/cache');*/
-
 include_once 'app.php';
-
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["logged-in"]) && $_SESSION["logged-in"] === true){
-    header("location: welcome.php");
-    exit;
-}
+include_once 'checkGuest.php';
 
 if (isset($_POST['login-submit'])) {
 
@@ -69,6 +57,7 @@ if (isset($_POST['login-submit'])) {
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['logged-in'] = true;
 
+                    loadMatriProfile($_SESSION['id'],$mysqli);
                     //header("Location: index.php");
                     (isset($_SESSION['redirectURL'])
                         ?header("Location:".$_SESSION['redirectURL'])

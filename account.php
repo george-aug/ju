@@ -1,6 +1,6 @@
 <?php
 
 include_once 'app.php';
-include_once 'authenticate.php';
+include_once 'checkAuth.php';
 
 echo $blade->make('account');

@@ -4,7 +4,7 @@ require_once 'app.php';
 
 $sql = "SELECT
     profiles.id,
-    profiles.profile_no,
+    profiles.pno,
     profiles.photo,
     profiles.first_name,
     profiles.last_name,
@@ -78,7 +78,7 @@ if(isset($_POST['srch-submit'])){
 
                 //var_dump($key);
                 //var_dump($value);
-                echo "<br>";
+                //echo "<br>";
 
                 /*
                  * Processing ${$key}
@@ -88,7 +88,7 @@ if(isset($_POST['srch-submit'])){
                 }
                 ${$key} = array_filter(${$key}); // Removing null values from array
                 //var_dump(${$key});
-                echo "<br>";
+                //echo "<br>";
 
                 ${$key.'_query'} = implode(",", ${$key});
 
@@ -160,14 +160,14 @@ if(isset($_POST['srch-submit'])){
                /* echo "Not Array: ";
                 var_dump($key);
                 var_dump($value);*/
-                echo "<br>";
+                //echo "<br>";
 
                 /*
                  * Processing ${$key}
                  * */
                 $v=${$key} = trim($value);
                 //var_dump(${$key});
-                echo "<br>";
+                //echo "<br>";
 
                 if(!empty($v)){
                     switch ($key){
@@ -229,8 +229,8 @@ if(isset($_POST['srch-submit'])){
 
     //var_dump($queries);
 
-    echo "<br>";
-    echo "<br>";
+    //echo "<br>";
+    //echo "<br>";
 
     if(!empty($queries)){
         $sql .= " WHERE ";
@@ -250,8 +250,8 @@ if(isset($_POST['srch-submit'])){
 
     //var_dump($sql);
 
-    echo "<br>";
-    echo "<br>";
+    //echo "<br>";
+    //echo "<br>";
 
 }
 

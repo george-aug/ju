@@ -1,15 +1,43 @@
+Naming of Folders
+=================
+css
+img
+jsc
+
+uploaded: pics,tmb,kyc
+
+
+
+
+
+
+
+=============
+Photo Albums
+=============
+Using Asynchronous Method (AJAX) to handle uploaded images
+Features Include:
+1. DragNDrop
+2. Edit Existing Image from server
+3. Delete/Remove Image
+4. Edit Image - Crop, Turn etc
+5. Upload Image to server
+
 =======================
 List of Files & Folders
 =======================
+index.php
+welcome.php
+
 Account
 -------
 login.php       auth/login.blade.php
 signup.php      auth/signup.blade.php
-join.php
-pass.php
+join.php        auth/
+pass.php        auth/
 change.php      auth/password/change.php
-forgot.php
-reset.php
+forgot.php      auth/password/
+reset.php       auth/password/
 
 Matrimony
 ---------
@@ -19,7 +47,10 @@ dashboard.php
 my-profile.php
 referral.php
 
-
+======
+Uses
+======
+use of Nesbot Carbon on dashboard.php
 
 
 
@@ -33,11 +64,22 @@ Conclusion try different multi-select approach
 ==============
 Session Record
 ==============
+Session is generated in following files:
+- login.php
+- inc/functions.php
 
+Following Session Variables
+---------------------------
+id:         logged-in userId
+name:       logged-in user
+mobile:     logged-in user
+username:   logged-in user
+email:      logged-in user
+logged-in:  bool(true or false)
 
-
-
-
+redirectURL:    redirect url after login
+msg:            flash message
+type:           flash message type
 
 
 ================

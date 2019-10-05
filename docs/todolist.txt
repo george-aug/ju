@@ -1,0 +1,19 @@
+flash messages through sessions done on - login.php
+changing auth folder to account
+ajax name and mobile no validation on -join us page
+csrf_token
+complete the account page
+Nav bar: Matrimony, Other links, Account
+
+
+Redirect from album page to create profile page if user matrimony is not created that is
+session pno and pid
+
+Understanding col-lg-3 col-md-4 col-xs-6 and implementing
+
+Learning
+--------
+appending & showing sidebar in blade template
+
+
+https://www.dyn-web.com/tutorials/php-js/json/array.php

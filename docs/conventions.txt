@@ -1,0 +1,6 @@
+
+//====================
+// Rules & Conventions
+//====================
+
+$sql for single output and $sqlN for array of outputs

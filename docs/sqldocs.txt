@@ -1,0 +1,18 @@
+JOIN means INNER JOIN
+
+====================================
+MYSQL query One to many relationship
+====================================
+
+https://stackoverflow.com/questions/46443962/mysql-one-to-many-select
+
+Google: mysql query one to many select
+https://stackoverflow.com/questions/37785847/mysql-one-to-many-relationship-in-one-query
+http://sqlfiddle.com/#!9/633cfa1/101
+https://3v4l.org/q1dli
+
+===================================
+JOIN when some fields could be null
+===================================
+Google: how to join if some field is null in mysql
+https://dba.stackexchange.com/questions/180006/apply-inner-join-only-if-there-is-a-row-available-otherwise-use-null

@@ -1,83 +1,67 @@
 <?php
 
-include_once 'inc/session.php';
-include_once 'inc/messages.php';
-include_once 'inc/database.php';
-include_once 'vendor/autoload.php';
-use Jenssegers\Blade\Blade;
-$blade = new Blade('resources/views', 'resources/cache');
-
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["logged-in"]) && $_SESSION["logged-in"] === true){
-    header("location: welcome.php");
-    exit;
-}
+include_once 'app.php';
+include_once 'checkGuest.php';
 
 if (isset($_POST['signup-submit'])){
 
     $type='';
     $sms='';
-    $username = $_POST['username'];
+    $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $confirmPassword = $_POST['confirm-password'];
+    $mobile = $_POST['mobile'];
 
-    if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
-        header("Location: signup.php?type=error&sms=empty-fields&username=".$username."&email=".$email);
+    //var_dump($_POST);
+
+    if (empty($name) || empty($email) || empty($password) || empty($mobile)) {
+        header("Location: signup3.php?type=error&sms=empty-fields&name=".$name."&email=".$email."&mobile=".$mobile);
+
         exit();
     }
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-        header("Location: signup.php?type=error&sms=invalid-uid&username=".$username."&email=".$email);
+    elseif (!preg_match("/^([a-zA-Z']{3,}+[\ ]+([\ A-Za-z]+){2,})$/", $name)) {
+        header("Location: signup3.php?type=error&sms=invalid-name&name=".$name."&email=".$email."&mobile=".$mobile);
         exit();
     }
     elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        header("Location: signup.php?type=error&sms=invalid-email&username=".$username);
+        header("Location: signup3.php?type=error&sms=invalid-email&name=".$name."&email=".$email."&mobile=".$mobile);
         exit();
     }
-    elseif (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-        header("Location: signup.php?type=error&sms=invalid-username&email=".$email);
-        exit();
-    }
-    elseif ($password !== $confirmPassword) {
-        header("Location: signup.php?type=error&sms=password-mismatch&username=".$username."&email=".$email);
+    elseif (!preg_match("/^[6-9]\d{9}$/",$mobile)) {
+        header("Location: signup3.php?type=error&sms=invalid-mobile&name=".$name."&email=".$email."&mobile=".$mobile);
         exit();
     }
     else{
-        $sql = "SELECT username FROM users WHERE username=?";
-        $stmt=$mysqli->stmt_init();
-        if (!$stmt->prepare($sql)) {
-            header("Location: signup.php?type=error&sms=sql-error");
+        $sql1 = "SELECT email FROM users WHERE email='$email'";
+        $result = $mysqli->query($sql1);
+        $emailCheck = mysqli_num_rows($result);
+        if ($emailCheck > 0) {
+            header("Location: signup3.php?type=error&sms=email-exist&name=".$name."&email=".$email."&mobile=".$mobile);
             exit();
         }
-        else{
-            $stmt->bind_param( "s", $username);
-            $stmt->execute();
-            $stmt->store_result();
-            $resultCheck = $stmt->num_rows();
 
-            if ($resultCheck > 0) {
-                header("Location: signup.php?type=error&sms=username-taken&email=".$email);
-                exit();
-            }
-            else{
-                $sql = "INSERT INTO users(username,email,password) VALUES(?,?,?)";
-                $stmt=$mysqli->stmt_init();
-                if (!$stmt->prepare($sql)) {
-                    header("Location: signup.php?type=error&sms=sql-error");
-                    exit();
-                }
-                else{
+        $sql2 = "SELECT mobile FROM users WHERE mobile='$mobile'";
+        $result = $mysqli->query($sql2);
+        $mobileCheck = mysqli_num_rows($result);
+        if ($mobileCheck > 0) {
+        header("Location: signup3.php?type=error&sms=mobile-exist&name=".$name."&email=".$email."&mobile=".$mobile);
+        exit();
+    }
 
-                    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-                    $stmt->bind_param( "sss", $username, $email, $hashedPwd);
-                    $stmt->execute();
-                    header("Location: login.php?type=success&sms=registered");
-                    exit();
+        // ==================================
+        // Interaction with DB
+        // Insert into users table
+        // ==================================
 
-                }
+        $sql = "INSERT INTO users(name,email,mobile,password) VALUES(?,?,?,?)";
+        $stmt=$mysqli->stmt_init();
+        stmtPrepare($stmt,$sql,'signup3.php');
 
-            }
-        }
+        $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bind_param( "ssss", $name, $email,$mobile, $hashedPwd);
+        $stmt->execute();
+        header("Location: login.php?type=success&sms=registered");
+        exit();
 
     }
 

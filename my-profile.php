@@ -1,50 +1,20 @@
 <?php
 
 include_once 'app.php';
-//var_dump($_SESSION);
-//exit();
+include_once 'checkAuth.php';
 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["logged-in"]) || $_SESSION["logged-in"] !== true){
-    header("location: login.php");
-    exit;
+if(!isset($_SESSION['pid'])){
+    echo $blade->make('matrimony.my-profile');
+    exit();
 }
 
-/*$sql= "SELECT
-    profiles.profile_no as pno,
-    profiles.first_name as fn,
-    profiles.last_name as ln,
-    profiles.gender,
-    profiles.dob,
-    profiles.marital_id,
-    heights.feet as ht,
-    religions.name as rel,
-    languages.name as mt,
-    incomes.level as inc
-
-    FROM profiles  
-    LEFT JOIN heights ON heights.id = profiles.height_id
-    LEFT JOIN religions ON religions.id = profiles.religion_id
-    LEFT JOIN languages ON languages.id = profiles.language_id
-    LEFT JOIN incomes ON incomes.id = profiles.income_id
-
-    WHERE profiles.id ='".$_SESSION['mid']."'
- ";*/
-
-$sql="SELECT * FROM profiles WHERE profiles.id ='".$_SESSION['mid']."'";
-
+$sql="SELECT * FROM profiles WHERE profiles.id ='".$_SESSION['pid']."'";
 $result = $mysqli->query($sql);
 $profile = $result->fetch_object();
 
 $sql2="SELECT * FROM users WHERE users.id ='".$_SESSION['id']."'";
-
 $result2 = $mysqli->query($sql2);
 $user = $result2->fetch_object();
-
-//var_dump($_SESSION);
-/*var_dump($profile);
-echo '<br>';
-var_dump($maritals);*/
 
 echo $blade->make('matrimony.my-profile',
     [

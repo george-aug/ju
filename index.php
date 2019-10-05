@@ -6,5 +6,5 @@ use Jenssegers\Blade\Blade;
 $blade = new Blade('resources/views', 'resources/cache');*/
 
 include_once 'app.php';
-//var_dump($_SESSION);
+var_dump($_SESSION);
 echo $blade->make('index');

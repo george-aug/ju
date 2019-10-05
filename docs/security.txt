@@ -1,0 +1,60 @@
+==================
+Security Checklist
+==================
+
+php.ini Configuration
+---------------------
+expose_php=Off
+mail.add_x_header=Off
+display_errors=Off
+Don't display $conn->connect_error error
+
+Session Cookies
+----------------
+session.cookie_httponly = On
+session.cookie_secure = On  //If using https
+
+Session Fixation
+----------------
+session.use_strict_mode = On
+
+Remote File Inclusion / also in php.ini
+----------------------
+allow_url_fopen = Off
+allow_url_include = Off
+
+Directory Traversal
+Test by setting in xampp php.ini file following:
+open_basedir =\xampp\htdocs\justunite\;\xampp\phpMyAdmin\
+
+===============
+Important Reads
+===============
+https://www.acunetix.com/websitesecurity/php-security-1/
+https://www.acunetix.com/websitesecurity/php-security-2/
+https://www.acunetix.com/websitesecurity/php-security-3/
+https://www.acunetix.com/websitesecurity/php-security-4/
+https://www.acunetix.com/websitesecurity/php-security-5/
+https://www.acunetix.com/websitesecurity/cross-site-scripting/
+
+https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+https://cheatsheetseries.owasp.org/cheatsheets/Denial_of_Service_Cheat_Sheet.html
+
+Google Search:
+how to securely use include() require() file_get_contents
+vulnerable and risk php websites
+how to disable exec in php
+disable_functions = show_source, system, shell_exec, passthru, exec, popen, proc_open
+
+
+https://docs.php.earth/security/intro/
+http://blog.kotowicz.net/2010/07/hardening-php-how-to-securely-include.html
+
+MD5 Hash
+https://stackoverflow.com/questions/1240852/is-it-possible-to-decrypt-md5-hashes
+https://stackoverflow.com/questions/8878388/how-to-convert-md5-string-to-normal-text
+
+=========================
+Common Mistakes with PHP
+=========================
+https://www.toptal.com/php/10-most-common-mistakes-php-programmers-make
